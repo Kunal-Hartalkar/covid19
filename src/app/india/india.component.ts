@@ -20,7 +20,12 @@ export class IndiaComponent implements OnInit {
   private IndiaData = [];
   private StateData = [];
   public  States = [];
+  public District = [];
+  public DistrictInput = [];
+  public disrtictInputConfirmed = [];
+  public selectedDistrictData = [];
   public binding = 'totalconfirmed';
+  public selectedState: string;
   // *********************** Chart Data*************
 
   public lineChartData: ChartDataSets[] = [
@@ -28,7 +33,9 @@ export class IndiaComponent implements OnInit {
   ];
   public lineChartLabels: Label[] = [];
   public lineChartType = 'line';
-  public lineChartOptions: ChartOptions = { responsive: true };
+  public lineChartOptions: ChartOptions = {
+      responsive: true,
+      };
   // public lineChartColors =  [{
   //   backgroundColor: [],
   // }];
@@ -69,6 +76,16 @@ export class IndiaComponent implements OnInit {
       });
       this.States = this.States.slice(1);
       // console.log(this.States);
+    });
+
+    this.dataSer.getIndiaDistrictWiseData().subscribe( (data) => {
+      // const selectedState = this.selectedState;
+        // console.log(data);
+        this.District = Object.entries(data);
+      
+      // for(let cv in data){
+      //   console.log(cv);
+      // }
     })
   }
 
@@ -98,24 +115,58 @@ export class IndiaComponent implements OnInit {
     // }
   }
 
-  onselectedState(e){
-    const selectedState = e.target.value;
+  onselectedState(e) {
+    this.selectedState = e.target.value;
+    console.log(this.selectedState);
     this.barChartData[0].data = [];
     this.barChartLabels = [];
     // console.log(this.StateData);
     this.StateData.map( (cv) => {
-      if (cv.state === selectedState) {
+      if (cv.state === this.selectedState) {
         const active = cv.confirmed - cv.deltadeaths - cv.recovered;
         this.barChartLabels = ['Total Confirmed', 'Total Active', 'Total Recovered', 'Total Deaths' ];
         this.barChartData[0].data = [cv.confirmed, active, cv.recovered, cv.deltadeaths ]
         // tslint:disable-next-line: no-unused-expression
         // this.barChartColors[0].backgroundColor[ ];
-        console.log(cv.confirmed);
-        console.log(cv.deltadeaths);
-        console.log(cv.recovered);
-        console.log(cv.confirmed - cv.deltadeaths - cv.recovered );
+        // console.log(cv.confirmed);
+        // console.log(cv.deltadeaths);
+        // console.log(cv.recovered);
+        // console.log(cv.confirmed - cv.deltadeaths - cv.recovered );
 
       }
-    })
+    });
+    // const aa = this.District.filter( dt => this.selectedState === dt[0])[0];
+    //    console.log(aa[1].districtData);
+    // this.selectedDistrictData = Object.entries(this.District.filter( dt => this.selectedState === dt[0])[0]);
+    this.selectedDistrictData = this.District.filter( dt => this.selectedState === dt[0])[0];
+    // const district = Object.entries(this.selectedDistrictData[1].districtData);
+    // district.map( (cv) => {
+    //   console.log(cv[0]);
+    // });
+    this.DistrictInput = [];
+    Object.entries(this.selectedDistrictData[1].districtData).map( (cv) => {
+      this.DistrictInput.push(cv[0]);
+    });
+    // this.DistrictInput = this.DistrictInput.pop();
+    // console.log(Object.entries(this.selectedDistrictData[1].districtData));
+    this.selectedDistrictData = Object.entries(this.selectedDistrictData[1].districtData);
+    this.disrtictInputConfirmed = [];
+    this.selectedDistrictData.map( (cv) => {
+      this.disrtictInputConfirmed.push(cv[1].confirmed);
+    });
+    console.log(this.selectedDistrictData);
+    console.log(this.disrtictInputConfirmed);
+
+    // this.disrtictInputConfirmed = this.disrtictInputConfirmed.pop();
   }
+
+  // onselectedDistrict(e) {
+  //   const selectedDistrictFromInput = e.target.value;
+  //   console.log(selectedDistrictFromInput);
+  //   this.selectedDistrictData = Object.entries(this.selectedDistrictData[1].districtData);
+  //   console.log(this.selectedDistrictData);
+  //   // console.log(this.selectedDistrictData[1].districtData.selectedDistrictFromInput);
+  //   // if(selectedDistrictFromInput === this.selectedDistrictData[1].)
+  // }
+  // 
 }

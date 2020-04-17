@@ -47,7 +47,7 @@
 
     <hr>
 
-    <div class="row">
+    <!-- <div class="row">
         <div class="col-md-12">
             <div class="jumbotron bg-white text-center">
                 <h5 class="display-4">Corona Covid-19 Tracker - India - StateWise </h5>
@@ -74,6 +74,78 @@
                 [options]="barChartOptions">
             </canvas>
         </div>
+    </div> -->
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="jumbotron bg-white text-center">
+                <h1 class="display-4">Corona Covid-19 Tracker - India StateWise</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-10 offset-1">
+        <div class="row">       
+        <div class="col-md-6">
+            <div class="mx-auto" >
+                <div class="form-group col-lg-5 mx-auto">
+                    <label for="c" class="text-center">Select State</label>
+                    <select name="" class="form-control" id="c"
+                    (input)="onselectedState($event)">
+                        <option value="{{state}}" *ngFor="let state of States" >{{state}}</option>
+                    </select>
+                </div>
+                <div class="chart m-auto">
+                    <canvas baseChart  height="150"
+                        width="200"
+                        [datasets]="barChartData"
+                        [labels]="barChartLabels"
+                        [chartType]="barChartType"
+                        [colors]="barChartColors"
+                        [options]="barChartOptions">
+                    </canvas>
+                </div>
+            </div>
+
+            <!-- <div class="row mt-4">
+                <div class="chart m-auto " >
+                    <canvas baseChart style="width: 50vh;"
+                        [datasets]="barChartData"
+                        [labels]="barChartLabels"
+                        [chartType]="barChartType"
+                        [colors]="barChartColors"
+                        [options]="barChartOptions">
+                    </canvas>
+                </div>
+            </div> -->
+        </div>
+        <div class="col-md-6">
+            <div class="mx-auto">
+                <div class="form-group col-lg-5 mx-auto">
+                    <!-- <label for="c" class="text-center">Select District of Selected State</label>
+                    <select name="" class="form-control" id="c"
+                    (input)="onselectedDistrict($event)">
+                        <option value="{{di}}" *ngFor="let di of DistrictInput" >{{di}}</option>
+                    </select> -->
+                    <table class="table">
+                        <caption>List of Confirmed Cases</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">District</th>
+                                <th scope="col">Total Confirmed</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let di of DistrictInput let i = index">
+                                <th scope="row">{{i}}</th>
+                                <td>{{di}}</td>
+                                <td>{{disrtictInputConfirmed[i]}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
     </div>
     
     

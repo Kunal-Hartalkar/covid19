@@ -41,6 +41,10 @@ export class DataextractService {
     );
   }
 
+  getIndiaDistrictWiseData(){
+    return this.http.get('https://api.covid19india.org/state_district_wise.json');
+  }
+
   getGlobalDataCountries() {
     return this.http.get(this.globalDataUrl).pipe(
       map((data: any) => {
