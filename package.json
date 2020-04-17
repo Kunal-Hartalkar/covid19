@@ -5,10 +5,11 @@
     "ng": "ng",
     "start": "ng serve --proxy-config proxy.conf.json",
     "build": "ng build",
+    "prod": "ng build --prod --base-href https://kunal-hartalkar.github.io/covid19/",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy": "gh-pages -d dist"
+    "deploy": "ngh"
   },
   "private": true,
   "dependencies": {
