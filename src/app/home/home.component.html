@@ -1,0 +1,65 @@
+<div class="jumbotron bg-white text-center">
+    <h1 class="display-4">Corona Covid-19 Tracker</h1>
+
+</div>
+
+<div class="container">
+    <app-cards-update-data *ngFor="let head of headings" [title]="head.title" [count]="head.count" ></app-cards-update-data>  
+</div>
+<hr>
+<hr>
+
+
+<div class="text-center" style="transform:scale(1.5)">
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" #c type="radio" [(ngModel)]="binding" (click)='onUpdateChart(c)' name="inlineRadioOptions" id="c" value="totalConfirmed">
+        <label class="form-check-label" for="c" checked>Total Confirmed</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" #a type="radio" (click)='onUpdateChart(a)' name="inlineRadioOptions" id="a" value="totalActive">
+        <label class="form-check-label" for="a">Total Active </label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" #d type="radio" (click)='onUpdateChart(d)' name="inlineRadioOptions" id="d" value="totalDeaths">
+        <label class="form-check-label" for="d">Total Deaths</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" #r type="radio" (click)='onUpdateChart(r)' name="inlineRadioOptions" id="r" value="totalRecovered">
+        <label class="form-check-label" for="r">Total Recovered</label>
+    </div>
+</div>
+
+<hr>
+<hr>
+
+
+<div class="col-md-10 offset-1">
+    <div class="row">       
+    <div class="col-md-6">
+        <div class="chart" >
+            <canvas baseChart
+                [data]="pieChartData"
+                [labels]="pieChartLabels"
+                [chartType]="barChartType"
+                [options]="pieChartOptions"
+                [colors]="pieChartColors"
+                [legend]="barChartLegend">
+            </canvas>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="chart"  >
+            <canvas baseChart
+                [data]="pieChartData"
+                [labels]="pieChartLabels"
+                [chartType]="pieChartType"
+                [options]="pieChartOptions"
+                [colors]="pieChartColors">
+            </canvas>
+        </div>
+    </div>
+</div>
+<hr>
+<h5 class="text-center" > Above Chart Updating for Count > 5000 </h5>
+
+</div>

@@ -1,0 +1,17 @@
+<div class="jumbotron bg-white text-center">
+    <h1 class="display-4">Corona Covid-19 Tracker CountryWise</h1>
+</div>
+
+<div class="mx-auto">
+    <div class="form-group col-lg-5 mx-auto">
+        <label for="c" class="text-center">Select Country</label>
+        <select name="" class="form-control" id="c"
+        (input)="onselectCountry($event)">
+            <option value="{{coun}}" *ngFor="let coun of country" >{{coun}}</option>
+        </select>
+    </div>
+</div>
+
+<div class="container">
+    <app-cards-update-data *ngFor="let head of headingCountries" [title]="head.title" [count]="head.count" ></app-cards-update-data>  
+</div>

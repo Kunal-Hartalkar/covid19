@@ -1,0 +1,10 @@
+.card {
+    display: inline-block;
+    margin: 3vh;
+    width: 20% !important;
+}
+
+.card-text {
+    font-weight: bold;
+    font-size: larger;
+}

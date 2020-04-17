@@ -1,0 +1,81 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="jumbotron bg-white text-center">
+                <h1 class="display-4">Corona Covid-19 Tracker - India</h1>
+            </div>
+        </div>
+    </div>
+    <div class="headCard">
+        <app-cards-update-data *ngFor="let head of headings" [title]="head.title" [count]="head.count" ></app-cards-update-data>  
+    </div>
+    <hr>
+    <div class="row">
+        <div class="m-auto" style="transform: scale(1.2);">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" #c type="radio" [(ngModel)]="binding" (click)='onUpdateChart(c)' name="inlineRadioOptions" id="c" value="totalconfirmed">
+                <label class="form-check-label" for="c" checked>Total Confirmed</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" #a type="radio" (click)='onUpdateChart(a)' name="inlineRadioOptions" id="a" value="totalactive">
+                <label class="form-check-label" for="a">Total Active </label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" #d type="radio" (click)='onUpdateChart(d)' name="inlineRadioOptions" id="d" value="totaldeceased">
+                <label class="form-check-label" for="d">Total Deaths</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" #r type="radio" (click)='onUpdateChart(r)' name="inlineRadioOptions" id="r" value="totalrecovered">
+                <label class="form-check-label" for="r">Total Recovered</label>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="chart m-auto " >
+            <canvas baseChart style="width: 150vh;"
+                [datasets]="lineChartData"
+                [labels]="lineChartLabels"
+                [chartType]="lineChartType"
+                [options]="lineChartOptions">
+            </canvas>
+        </div>
+    </div>
+    <hr>
+    <div class="row mb-2">
+        <h5 class="m-auto" > Above Chart shows India's daily count data </h5>
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="jumbotron bg-white text-center">
+                <h5 class="display-4">Corona Covid-19 Tracker - India - StateWise </h5>
+            </div>
+        </div>
+    </div>
+
+    <div class="mx-auto">
+        <div class="form-group col-lg-5 mx-auto">
+            <label for="c" class="text-center">Select State</label>
+            <select name="" class="form-control" id="c"
+            (input)="onselectedState($event)">
+                <option value="{{state}}" *ngFor="let state of States" >{{state}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="chart m-auto " >
+            <canvas baseChart style="width: 150vh;"
+                [datasets]="barChartData"
+                [labels]="barChartLabels"
+                [chartType]="barChartType"
+                [colors]="barChartColors"
+                [options]="barChartOptions">
+            </canvas>
+        </div>
+    </div>
+    
+    
+
+</div>
