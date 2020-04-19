@@ -125,11 +125,12 @@ export class IndiaComponent implements OnInit {
       if (cv.state === this.selectedState) {
         const active = cv.confirmed - cv.deltadeaths - cv.recovered;
         this.barChartLabels = ['Total Confirmed', 'Total Active', 'Total Recovered', 'Total Deaths' ];
-        this.barChartData[0].data = [cv.confirmed, active, cv.recovered, cv.deltadeaths ]
+        this.barChartData[0].data = [cv.confirmed, active, cv.recovered, cv.deaths ];
         // tslint:disable-next-line: no-unused-expression
         // this.barChartColors[0].backgroundColor[ ];
         // console.log(cv.confirmed);
-        // console.log(cv.deltadeaths);
+        // console.log(cv);
+        // console.log(cv.deaths);
         // console.log(cv.recovered);
         // console.log(cv.confirmed - cv.deltadeaths - cv.recovered );
 
@@ -154,8 +155,8 @@ export class IndiaComponent implements OnInit {
     this.selectedDistrictData.map( (cv) => {
       this.disrtictInputConfirmed.push(cv[1].confirmed);
     });
-    console.log(this.selectedDistrictData);
-    console.log(this.disrtictInputConfirmed);
+    // console.log(this.selectedDistrictData);
+    // console.log(this.disrtictInputConfirmed);
 
     // this.disrtictInputConfirmed = this.disrtictInputConfirmed.pop();
   }
